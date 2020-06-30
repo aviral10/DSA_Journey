@@ -1,3 +1,3 @@
 # DSA_Journey
-I'm uploading all the codes, algorithms and helpful stuff that I encounter related to Data Structures and Algorithms.
+I'm uploading all the codes, algorithms and helpful stuff that I encounter along my journey towards the realm of Data Structures and Algorithms.
 :)
