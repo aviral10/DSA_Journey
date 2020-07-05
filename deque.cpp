@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-//A Basic Dequeue, has a maximum length option to restrict the size of queue
+//NOT A DOUBLE ENDED QUEUE
+//A Basic Deque (Deck), has a maximum length option to restrict the size of queue
 //Can be used as a normal queue
 
 template <typename T=int>
