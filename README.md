@@ -3,12 +3,16 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
 :)
 * ## LinkedList
   - MergeSort
-* ## BinarySearchTress
-  - Insert in a BST, Inorder traversal
+* ## Backtracking
+  - N Queens
+  - Permutations
+  - Rat Maze
 * ## Stack
   - Basic operations
 * ## Queue
   - Deque (Deck)
+* ## BinarySearchTress
+  - Insert in a BST, Inorder traversal
 * ## Heap
   - Insert, Delete, Heapify
 * ## Graphs
@@ -18,7 +22,3 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
   - Heap Sort
   - Quick Sort
   - Merge Sort
-* ## Backtracking
-  - N Queens
-  - Permutations
-  - Rat Maze
