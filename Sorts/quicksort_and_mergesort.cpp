@@ -1,12 +1,10 @@
+/*
+Author: Aviral
+*/
+
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
-void swap(int *a, int *b){
-    int t;
-    t = *a;
-    *a = *b;
-    *b = t;
-}
 
 int partition(vector<int> &a, int l, int h){
     int pivot = l;
@@ -22,9 +20,9 @@ int partition(vector<int> &a, int l, int h){
             j--;
         }
         if(i<j)
-            swap(&a[i], &a[j]);
+            swap(a[i], a[j]);
     }
-    swap(&a[pivot], &a[j]);
+    swap(a[pivot], a[j]);
     return j;
 }
 
@@ -77,6 +75,11 @@ int main()
 {
     vector<int> a = {4,9,7,5,8,10,-3};
     quicksort(a, 0, a.size()-1);
+    for(auto x: a)
+    {
+        cout << x << ' ';
+    }
+    cout << "\n";
     mergesort(a, 0, a.size()-1);
     for(auto x: a)
     {

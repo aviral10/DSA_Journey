@@ -1,13 +1,11 @@
+/*
+Author: Aviral
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 
 //Heap Sort, only works for arrays containing unique elements
-
-void swap(int *a, int *b)
-{
-    int t;
-    t = *a;*a=*b;*b=t;
-}
 
 class Heap{
     public:
@@ -24,7 +22,7 @@ class Heap{
                 int i = size;
                 while(i > 1 && heap[i] > heap[i/2])
                 {
-                    swap(&heap[i], &heap[i/2]);
+                    swap(heap[i], heap[i/2]);
                     i/=2;
                 }
             }   
@@ -49,7 +47,7 @@ class Heap{
                 }
                 if(heap[ind] < heap[m])
                 {
-                    swap(&heap[ind], &heap[m]);
+                    swap(heap[ind], heap[m]);
                 }
                 else
                     break;

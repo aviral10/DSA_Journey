@@ -1,5 +1,8 @@
-#include<bits/stdc++.h>
+/*
+Author: Aviral
+*/
 
+#include<bits/stdc++.h>
 using namespace std;
 
 //Easiest Rat maze problem, possible moves: down or right, starts form 0,0 end at n-1,n-1

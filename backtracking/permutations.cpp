@@ -1,15 +1,12 @@
+/*
+Author: Aviral
+*/
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
 
 //Permutaions of a vector using simple backtracking.
 
-template<typename T=int>
-void swap(T *a, T *b)
-{
-    T t;
-    t = *a;*a=*b;*b=t;
-}
 
 template<typename T=int>
 void subsets(vector<T> &a, int ind=0)
@@ -45,9 +42,9 @@ void perm1(vector<T> &a, int l, int h)
     {
         for(int i=l;i<=h;i++)
         {
-            swap<T>(&a[l], &a[i]);
+            swap(a[l], a[i]);
             perm1<T>(a, l+1, h);
-            swap<T>(&a[l], &a[i]);
+            swap(a[l], a[i]);
         }
     }
 }
@@ -94,9 +91,9 @@ int main()
     vector<char> b;
     string p = "abc";
     b = string_to_vector(p);
-    //subsets(a, 0);
-    //perm1<char>(b, 0, b.size()-1);
-    //perm2<char>(b, 0);
+    subsets(a, 0);
+    perm1<char>(b, 0, b.size()-1);
+    perm2<char>(b, 0);
     
     perm2(a, 0);
     cout << '\n';
