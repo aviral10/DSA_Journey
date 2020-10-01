@@ -7,6 +7,8 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
   - Insert in a BST, Inorder traversal
 * ## Stack
   - Basic operations
+* ## Queue
+  - Deque (Deck)
 * ## Heap
   - Insert, Delete, Heapify
 * ## Graphs
