@@ -91,7 +91,7 @@ public:
     }
 
     void Delete(int val){
-        root = Delete(root, val);
+        root = Delete(this->root, val);
     }
 
     void inorder(){
