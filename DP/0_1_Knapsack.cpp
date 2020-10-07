@@ -1,3 +1,9 @@
+/*
+Author: Aviral
+
+Sample problem link: https://www.hackerrank.com/contests/srin-aadc03/challenges/classic-01-knapsack
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 
