@@ -9,6 +9,8 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
 
 * ## BinarySearchTress
   - Insert in a BST, Inorder traversal
+* ## Dynamic Programming
+  - 0/1 Knapsack
 
 * ## Graphs
   - BFS, DFS
@@ -30,3 +32,6 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
 
 * ## Stack
   - Basic operations
+
+* ## Trees
+  - Diameter of a Tree(Maximum distance between 2 leaf nodes)
