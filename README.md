@@ -8,7 +8,9 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
   - Rat Maze
 
 * ## BinarySearchTress
-  - Insert in a BST, Inorder traversal
+  - Insert/Delete in a BST
+  - Inorder traversal
+
 * ## Dynamic Programming
   - 0/1 Knapsack
 
