@@ -1,49 +1,40 @@
 /*
 Author: Aviral
 */
+
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
-typedef vector<int>		vi;
 
 //Basic Stack
-
+template<typename T>
 class Stack{
-    public:
-        vector<int> stack;
-        int top;
-        Stack()
-        {
-            top = -1;
-        }
+public:
+    vector<T> stack;
+    int top;
+    Stack() : top(-1) {}
 
-        void push(int val)
-        {
-            stack.push_back(val);
-            top++;
-        }
+    void push(T val){
+        stack.push_back(val);
+        top++;
+    }
 
-        int isEmpty()
-        {
-            return top == -1;
-        }
+    bool isEmpty() { return top == -1; }
 
-        int pop()
-        {
-            if(isEmpty())
-                return -1;
-            int temp;
-            temp = stack[top--];
-            stack.pop_back();
-            return temp;
-        }
+    int pop(){
+        if(isEmpty()) return -1;
+    
+        T temp = stack[top--];
+        stack.pop_back();
+        return temp;
+    }
 
 };
 
 
-
 int main()
 {
-    
+    Stack<int> s;
+    cout << s.isEmpty();
     return 0;
 }

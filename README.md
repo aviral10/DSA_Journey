@@ -25,6 +25,7 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
   - MergeSort
 
 * ## Queue
+  - A templatized implementation of a Queue
   - Deque (Deck)
 
 * ## Sorting
@@ -36,4 +37,8 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
   - Basic operations
 
 * ## Trees
+  - Create Tree using given PreOrder and InOrder traversal sequence
   - Diameter of a Tree(Maximum distance between 2 leaf nodes)
+  - Least Common Ancestor
+  - Print all paths of a binary tree
+  - Level-wise sum
