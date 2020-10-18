@@ -15,9 +15,12 @@ void subsets(vector<T> &a, int ind=0)
     if(ind == a.size())
     {
         cout << "{";
-        for(auto x: res)
+        bool check = false;
+        for(auto x: res){
             cout << x << " ";
-        cout << "}\n";
+            check = true;
+        }
+        cout << (check ? "\b": "") << "}\n";
     }
     else
     {
@@ -43,7 +46,7 @@ void perm1(vector<T> &a, int l, int h)
         for(int i=l;i<=h;i++)
         {
             swap(a[l], a[i]);
-            perm1<T>(a, l+1, h);
+            perm1(a, l+1, h);
             swap(a[l], a[i]);
         }
     }
@@ -68,7 +71,7 @@ void perm2(vector<T> &a, int k)
             {
                 mark[i] = 1;
                 res[k] = a[i];
-                perm2<T>(a, k+1);
+                perm2(a, k+1);
                 mark[i] = 0;
             }
         }
