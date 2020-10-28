@@ -1,7 +1,3 @@
-/*
-Author: Aviral
-*/
-
 #include<iostream>
 #include<vector>
 #include<string>
@@ -71,6 +67,28 @@ private:
             s = s.substr(i);
         }
     }
+    BigInteger m_single_mul(string num, int m)
+    {
+        BigInteger t;
+        string temp = "";
+        int carry = 0;
+        for(int i=num.size()-1; i >= 0; i--)
+        {
+            int a = num[i] - '0';
+            int mult = a*m + carry;
+            char x = 48 + mult%10;
+            temp += x;
+            carry = mult/10;
+        }
+        if(carry) 
+        {
+            char x = 48 + carry;
+            temp += x;
+        }
+        reverse(temp.begin(), temp.end());
+        t = temp;
+        return t;
+    }
     
 public:
     BigInteger()           { number = ""; }
@@ -89,6 +107,104 @@ public:
     {
         cout << number << '\n';
     }
+
+    bool operator == (const BigInteger &other){
+        if(number.size() != other.number.size())
+        {
+            return false;
+        }
+        for(int i=0; i<number.size(); i++){
+            if(number[i] != other.number[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool operator != (const BigInteger &other)
+    {
+        BigInteger a = number;
+        BigInteger b = other.number;
+        return !( a==b );
+    }
+    bool operator < (const BigInteger &other){
+        int neg_degree = 0;
+        if(number[0] == '-' && other.number[0] != '-')
+        {
+            return true;
+        }
+        if(number[0] != '-' && other.number[0] == '-')
+        {
+            return false;
+        }
+        
+        if(number[0] == '-' && other.number[0] == '-')
+        {
+            if(number.size() > other.number.size())
+            {
+                return true;
+            }
+            else if(number.size() < other.number.size())
+            {
+                return false;
+            }
+            else
+            {
+                for(int i=1; i<number.size(); i++)
+                {
+                    int a = number[i]- '0';
+                    int b = other.number[i] - '0';
+                    if(a < b)
+                    {
+                        return false;
+                    }
+                    else if(a > b)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        else
+        {
+            if(number.size() < other.number.size())
+            {
+                return true;
+            }
+            else if(number.size() > other.number.size())
+            {
+                return false;
+            }
+            else
+            {
+                for(int i=0; i<number.size(); i++)
+                {
+                    int a = number[i]- '0';
+                    int b = other.number[i] - '0';
+                    if(a > b)
+                    {
+                        return false;
+                    }
+                    else if(a < b)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
+    bool operator > (const BigInteger &other){
+        BigInteger a = number;
+        BigInteger b = other.number;
+        if( a == b ) return false; 
+        
+        return !(a < b);
+    }   
+
     BigInteger operator - ()
     {
         BigInteger temp = number;
@@ -224,7 +340,18 @@ public:
     
     BigInteger operator * (const BigInteger &other)
     {
-        //TBC
+        BigInteger hold;
+        BigInteger carry = "0";
+        string space = "";
+        for(int i=other.number.size()-1; i >= 0; i--)
+        {
+            hold = m_single_mul(number, other.number[i] - '0');
+            hold.number = hold.number + space;
+            hold = hold + carry;
+            carry = hold;
+            space += "0";
+        }
+        return hold;
     }
 
     BigInteger operator / (const BigInteger &other)
@@ -277,13 +404,14 @@ BigInteger operator/(long long i, BigInteger& this_number)
 }
 
 int main(){
-    BigInteger a = "-1111", x;
-    BigInteger b = "10000", c = -1000;
-    x = -b;
-    cout << x << '\n';
-    // x = c + a;  //BUGG
-    // cin >> x;
-    // cout << x << '\n';
+    
+    long long int x = 100000, y = 100000;
+    BigInteger a = to_string(x);
+    BigInteger b = to_string(y), c = 10001;
+    BigInteger p = a*b, q = x*y;
+    cout << p << '\n';
+    cout << q << '\n';
+    cout << (p == q) << '\n';
 
     return 0;
 }
