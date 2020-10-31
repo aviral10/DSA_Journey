@@ -55,16 +55,29 @@ private:
     {
         int i = 0;
         if(s[i] == '-') i++;
-        while(s[i] == '0')
+        bool broke = false;
+        while(i< s.size())
         {
-            i++;
+            if(s[i] == '0'){
+                i++;
+            }
+            else
+            {
+                broke = true;
+                break;
+            }
         }
-        if(s[0] == '-')
-        {
-            s = "-" + s.substr(i);
-        }else
-        {
-            s = s.substr(i);
+        if(broke){
+            if(s[0] == '-')
+            {
+                s = "-" + s.substr(i);
+            }else
+            {
+                if(i!=0)
+                    s = s.substr(i);
+            }
+        }else{
+            s = "0";
         }
     }
     BigInteger m_single_mul(string num, int m)
@@ -88,6 +101,34 @@ private:
         reverse(temp.begin(), temp.end());
         t = temp;
         return t;
+    }
+
+    string m_divide(BigInteger &a, BigInteger &curr, BigInteger &num_two,int ind){
+        static string ans = "";
+        if(ind > (a.number.size())){
+            return ans;
+        }
+        
+        BigInteger hold = curr;
+        if(hold < num_two){
+            ans += "0";
+            string t = "";
+            t += a.number[ind++];
+            hold.number += t;
+            return m_divide(a, hold, num_two, ind);
+        }else{
+            int i=0;
+            while(num_two*(i+1) <= hold){
+                i++;
+            }
+            ans += to_string(i);
+            hold = hold - (num_two*i);
+            if(ind < a.number.size());
+                hold.number += a.number[ind++];
+            return m_divide(a, hold, num_two, ind);
+        } 
+        
+
     }
     
 public:
@@ -128,6 +169,7 @@ public:
         BigInteger b = other.number;
         return !( a==b );
     }
+
     bool operator < (const BigInteger &other){
         int neg_degree = 0;
         if(number[0] == '-' && other.number[0] != '-')
@@ -204,6 +246,20 @@ public:
         
         return !(a < b);
     }   
+
+    bool operator >= (const BigInteger &other){
+        BigInteger a = number;
+        BigInteger b = other.number;
+        if( a == b ) return true; 
+        return !(a < b);
+    }  
+
+    bool operator <= (const BigInteger &other){
+        BigInteger a = number;
+        BigInteger b = other.number;
+        if( a == b ) return true; 
+        return (a < b);
+    } 
 
     BigInteger operator - ()
     {
@@ -343,20 +399,63 @@ public:
         BigInteger hold;
         BigInteger carry = "0";
         string space = "";
-        for(int i=other.number.size()-1; i >= 0; i--)
+        string num = number;
+        int neg_degree = 0, one_or_zero = 0;
+        if(num[0] == '-'){
+            num = num.substr(1);
+            neg_degree++;
+        }
+        if(other.number[0] == '-'){
+            one_or_zero = 1;
+            neg_degree++;
+        }
+        for(int i=other.number.size()-1; i >= one_or_zero; i--)
         {
-            hold = m_single_mul(number, other.number[i] - '0');
+            hold = m_single_mul(num, other.number[i] - '0');
             hold.number = hold.number + space;
             hold = hold + carry;
             carry = hold;
             space += "0";
+        }
+        if(neg_degree == 1){
+            hold.number = "-" + hold.number;
         }
         return hold;
     }
 
     BigInteger operator / (const BigInteger &other)
     {   
-        //TBC
+        BigInteger num_one = number;
+        BigInteger num_two = other;
+        int neg_degree=0;
+        if(num_one.number[0] == '-')
+        {
+            neg_degree++;
+            num_one.number = num_one.number.substr(1);
+        }
+        if(num_two.number[0] == '-')
+        {
+            neg_degree++;
+            num_two.number = num_two.number.substr(1);
+        }
+        BigInteger hold = "";
+        string ans= "";
+        if(num_one < num_two)
+        {
+            hold = "0";
+            return hold;
+        }
+        string t = "";
+        t += num_one.number[0];
+        BigInteger curr = t;
+        t = m_divide(num_one, curr, num_two, 1);
+        m_remove_head_zeroes(t);
+        hold = t;
+        if(neg_degree == 1)
+        {
+            hold.number = "-" + hold.number;
+        }
+        return hold;
     }
 
     friend BigInteger operator+(long long , BigInteger& );
@@ -405,13 +504,52 @@ BigInteger operator/(long long i, BigInteger& this_number)
 
 int main(){
     
-    long long int x = 100000, y = 100000;
-    BigInteger a = to_string(x);
-    BigInteger b = to_string(y), c = 10001;
-    BigInteger p = a*b, q = x*y;
+    /*  Validation test
+    long long int x = -10, y = -5;
+    BigInteger m = x;
+    BigInteger n = y, c = 10001;
+    BigInteger p = m/n, q = x/y;
     cout << p << '\n';
     cout << q << '\n';
     cout << (p == q) << '\n';
+    */
+    
+    BigInteger a, b, c;
+    cout << "Menu: \n1: Add two big integers.\n2: Subtract 2 big integers\n3: Multiply two big integers\n4: Divide two big integers\n5: Exit\n";
+    int choice;
+    while(1){
+        cout << "Enter choice: ";
+        cin >> choice;
+        cin.ignore();
+        if(choice == 5){
+            break;
+        }
+        cout << "Enter first number: ";
+        cin >> a;
+        cin.ignore();
+        cout << "Enter second number: ";
+        cin >> b;
+        if(choice == 1){
+            c = a + b;
+        }
+        if(choice == 2){
+            c = a - b;
+        }
+        if(choice == 3){
+            c = a * b;
+        }
+        if(choice == 4){
+            if(b == "0"){
+                cout << "Zero Division Error\n";
+            }else{
+                c = a / b;
+            }
+        }
+        cout << "Ans: " << c << '\n';
+    }
+
+
+
 
     return 0;
 }
