@@ -369,6 +369,7 @@ public:
         }
         else if(neg_degree == 2)
         {
+            if(carry) ans += to_string(carry);
             reverse(ans.begin(), ans.end());
             ans = "-" + ans;
         }
