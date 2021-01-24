@@ -55,7 +55,10 @@ void merge(vector<int> &a, int l, int div, int h)
         arr.push_back(a[i++]);
     while (j!=h+1)
         arr.push_back(a[j++]);
-    a = arr;
+    int k=0;
+    for(int i=l;i<=h;i++){
+        a[i] = arr[k++];
+    }
 }
 
 void mergesort(vector<int> &a, int l, int h)
@@ -63,9 +66,9 @@ void mergesort(vector<int> &a, int l, int h)
     int mid = (l+h)/2;
     if(l<h)
     {
-        mergesort(a, 0, mid);
+        mergesort(a, l, mid);
         mergesort(a,mid+1, h);
-        merge(a, 0, mid, h);
+        merge(a, l, mid, h);
     }
 
 }
