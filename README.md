@@ -3,16 +3,19 @@ I'm uploading all the codes, algorithms and helpful stuff that I encounter along
 :)
 
 * ## Backtracking
-  - N Queens
-  - Permutations
-  - Rat Maze
+  - [N Queens](backtracking/n_queens_backtrack.cpp)
+  - [Permutations](backtracking/permutations.cpp)
+  - [Rat Maze](backtracking/rat_maze.cpp)
 
 * ## BinarySearchTress
   - Insert/Delete in a BST
   - Inorder traversal
 
 * ## Dynamic Programming
-  - 0/1 Knapsack
+  - [0/1 Knapsack](DP/0_1_Knapsack.cpp)
+  - [Edit Distance](DP/edit_distance.cpp)
+  - [Minimum Difference subsets](DP/subsets_with_min-diff.cpp)
+  - [Longest Increasing Subsequence](DP/longest_increasing_subsequence.cpp)
 
 * ## Graphs
   - BFS, DFS
